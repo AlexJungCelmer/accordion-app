@@ -26,7 +26,14 @@ const RecursiveAccordion = ({ sections, allowMultipleOpen }) => {
           >
             {section.title}
           </div>
-          <div className={`accordion-content ${activeSections.includes(index) ? 'open' : ''}`}>
+          <div
+            className={`accordion-content ${activeSections.includes(index) ? 'open' : ''}`}
+            style={{
+              maxHeight: activeSections.includes(index) ? '1000px' : '0',
+              opacity: activeSections.includes(index) ? 1 : 0,
+              transition: 'max-height 0.3s ease-in-out, opacity 0.3s ease-in-out',
+            }}
+          >
             {section.content}
             {section.sections && (
               <RecursiveAccordion sections={section.sections} allowMultipleOpen={allowMultipleOpen} />
