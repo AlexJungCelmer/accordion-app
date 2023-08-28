@@ -4,7 +4,16 @@ import './Accordion.css';
 const RecursiveAccordion = ({ sections, allowMultipleOpen }) => {
   const [activeSections, setActiveSections] = useState([]);
 
-  const toggleSection = (index) => {
+  const toggleSection = (e, index) => {
+    
+
+    if(!e.target.classList.contains('active')){
+      e.target.classList.add('active')
+      e.target.nextSibling.style.height = e.target.nextSibling.scrollHeight +'px'
+    } else {
+      e.target.classList.remove('active')
+      e.target.nextSibling.style.height = '0px'
+    }
     if (allowMultipleOpen) {
       if (activeSections.includes(index)) {
         setActiveSections(activeSections.filter((activeIndex) => activeIndex !== index));
@@ -22,16 +31,21 @@ const RecursiveAccordion = ({ sections, allowMultipleOpen }) => {
         <div key={index} className="accordion-section">
           <div
             className={`accordion-header ${activeSections.includes(index) ? 'active' : ''}`}
-            onClick={() => toggleSection(index)}
+            onClick={(e) => toggleSection(e, index)}
           >
             {section.title}
           </div>
           <div
             className={`accordion-content ${activeSections.includes(index) ? 'open' : ''}`}
+            onTransitionEnd={e => {
+              e.persist();
+              console.log(e.target);
+              e.target.style.height = 'auto'
+            }}
             style={{
-              maxHeight: activeSections.includes(index) ? '1000px' : '0',
+              // height: activeSections.includes(index) ? 'auto' : '0',
               opacity: activeSections.includes(index) ? 1 : 0,
-              transition: 'max-height 0.3s ease-in-out, opacity 0.3s ease-in-out',
+              // transition: 'opacity 0.3s ease-in-out',
             }}
           >
             {section.content}
