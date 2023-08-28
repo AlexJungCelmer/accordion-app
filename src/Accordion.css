@@ -1,0 +1,42 @@
+/* Accordion Styles */
+.accordion {
+    width: 100%;
+}
+
+.accordion-section {
+    border: 1px solid #ccc;
+    margin: 10px;
+}
+
+.accordion-header {
+    cursor: pointer;
+    padding: 10px;
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #ccc;
+}
+
+.accordion-header.active {
+    background-color: #e0e0e0;
+}
+
+.accordion-content {
+    display: none;
+}
+
+.accordion-content.open {
+    display: block;
+}
+
+.accordion-content {
+    transform-origin: top;
+    transform: scaleY(0);
+    opacity: 0;
+    transition: all 0.3s ease-in-out 0.3s;
+}
+
+.accordion-content.open {
+    transform: scaleY(1);
+    opacity: 1;
+}
+
+/* Estilos para outros elementos, como cabeçalhos e conteúdo */

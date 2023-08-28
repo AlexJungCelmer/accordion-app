@@ -1,25 +1,60 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import RecursiveAccordion from './Accordion';
 
-function App() {
+const App = () => {
+  const accordionSections = [
+    {
+      title: 'Section 1',
+      open: false,
+      content: (
+        <div>
+          <p>This is the content of Section 1.</p>
+        </div>
+      ),
+    },
+    {
+      title: 'Section 2',
+      open: false,
+      content: (
+        <div>
+          <p>This is the content of Section 2.</p>
+          <RecursiveAccordion
+            allowMultipleOpen={true}
+            sections={[
+              {
+                title: 'Subsection 1',
+                open: false,
+                content: (
+                  <div>
+                    <p>This is the content of Subsection 1.</p>
+                  </div>
+                ),
+              },
+              {
+                title: 'Subsection 2',
+                open: false,
+                content: (
+                  <div>
+                    <p>This is the content of Subsection 2.</p>
+                  </div>
+                ),
+              },
+            ]}
+            
+          />
+        </div>
+      ),
+    },
+  ];
+  
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Accordion Example with Multiple Open Sections</h1>
+      <RecursiveAccordion sections={accordionSections} allowMultipleOpen={true}/>
+
     </div>
   );
-}
+};
 
 export default App;
