@@ -5,7 +5,7 @@ const App = () => {
   const accordionSections = [
     {
       title: 'Section 1',
-      open: false,
+      open: true,
       content: (
         <div>
           <p>This is the content of Section 1.</p>
@@ -19,11 +19,11 @@ const App = () => {
         <div>
           <p>This is the content of Section 2.</p>
           <RecursiveAccordion
-            allowMultipleOpen={true}
+            allowMultipleOpen={false}
             sections={[
               {
                 title: 'Subsection 1',
-                open: false,
+                open: true,
                 content: (
                   <div>
                     <p>This is the content of Subsection 1.</p>
@@ -51,7 +51,7 @@ const App = () => {
   return (
     <div className="App">
       <h1>Accordion Example with Multiple Open Sections</h1>
-      <RecursiveAccordion sections={accordionSections} allowMultipleOpen={true}/>
+      <RecursiveAccordion sections={accordionSections} allowMultipleOpen={false}/>
 
     </div>
   );

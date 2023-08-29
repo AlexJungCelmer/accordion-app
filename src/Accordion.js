@@ -5,13 +5,14 @@ const RecursiveAccordion = ({ sections, allowMultipleOpen }) => {
   const [activeSections, setActiveSections] = useState([]);
 
   const toggleSection = (e, index) => {
-    
 
-    if(!e.target.classList.contains('active')){
-      e.target.classList.add('active')
-      e.target.nextSibling.style.height = e.target.nextSibling.scrollHeight +'px'
+
+    e.target.classList.toggle('active-accordion')
+    if (e.target.classList.contains('active-accordion')) {
+      e.target.nextSibling.style.height = e.target.nextSibling.scrollHeight + 'px'
     } else {
-      e.target.classList.remove('active')
+      e.target.classList.remove('active-accordion')
+      e.target.nextSibling.style.height = e.target.nextSibling.scrollHeight + 'px'
       e.target.nextSibling.style.height = '0px'
     }
     if (allowMultipleOpen) {
@@ -36,11 +37,12 @@ const RecursiveAccordion = ({ sections, allowMultipleOpen }) => {
             {section.title}
           </div>
           <div
-            className={`accordion-content ${activeSections.includes(index) ? 'open' : ''}`}
+            className={`accordion-content`}
             onTransitionEnd={e => {
               e.persist();
-              console.log(e.target);
-              e.target.style.height = 'auto'
+              if (e.target.classList.contains('active-accordion')) {
+                e.target.style.height = 'auto'
+              }
             }}
             style={{
               // height: activeSections.includes(index) ? 'auto' : '0',
